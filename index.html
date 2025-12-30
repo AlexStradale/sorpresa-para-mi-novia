@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorpresa 💗</title>
+
+<style>
+body{
+    height:100vh;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(to bottom,#fde2e4,#f8edeb);
+    font-family:"Segoe UI",sans-serif;
+}
+
+.box{
+    background:rgba(255,255,255,.9);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+    width:320px;
+    max-width:90%;
+}
+
+h1{
+    color:#555;
+    margin-bottom:35px;
+}
+
+.buttons{
+    position:relative;
+    height:120px;
+}
+
+button{
+    position:absolute;
+    border:none;
+    border-radius:20px;
+    padding:14px 28px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#yes{
+    background:#f4a6c1;
+    color:white;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:0;
+}
+
+#yes:hover{
+    transform:translateX(-50%) scale(1.05);
+}
+
+#no{
+    background:#e0e0e0;
+    color:#666;
+    left:15%;
+    bottom:0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>¿Quieres ver el contenido? 💗</h1>
+
+    <div class="buttons">
+        <button id="yes" onclick="goYes()">Sí</button>
+        <button id="no">No</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const container = document.querySelector(".buttons");
+
+
+const webhookURL = "https://discordapp.com/api/webhooks/1455586873555812473/lRFHTdqChreX26X16GT3shQm2TnNugDxjHzNs6LErYzDVGsbfYUrTSipVWR_HE58Z9MG";
+
+function moveButton(){
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+
+    if(!localStorage.getItem("triedNo")){
+        fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                content: "😏 Intentó presionar el botón NO"
+            })
+        });
+        localStorage.setItem("triedNo", "true");
+    }
+}
+
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+function goYes(){
+    window.location.href = "contenido.html";
+}
+</script>
+
+
+</body>
+</html>

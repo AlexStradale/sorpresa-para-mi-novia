@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti 💗</title>
+
+<style>
+body{
+    margin:0;
+    font-family:"Segoe UI",sans-serif;
+    background:linear-gradient(to bottom,#f8edeb,#fde2e4);
+    color:#555;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+.section{
+    background:rgba(255,255,255,.9);
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    margin-bottom:30px;
+}
+
+.counter{
+    font-size:18px;
+    font-weight:600;
+    margin-top:10px;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    margin:10px 0;
+}
+
+.footer{
+    font-style:italic;
+    opacity:.8;
+}
+
+
+@media(max-width:600px){
+    h1{font-size:22px;}
+    .counter{font-size:16px;}
+}
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    margin-bottom:25px;
+}
+
+.back-btn{
+    position:absolute;
+    left:0;
+    background:none;
+    border:none;
+    font-size:16px;
+    color:#f4a6c1;
+    cursor:pointer;
+    padding:8px 12px;
+}
+
+.back-btn:hover{
+    text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+    <button class="back-btn" onclick="goBack()">← Volver</button>
+    <h1>💗 Para ti 💗</h1>
+</div>
+
+
+    <div class="section">
+        <p>
+            Si llegaste hasta aquí, es porque dijiste que sí. (igual podias negarte)<br>
+            Y la verdad… me encanta que seas tú.
+        </p>
+    </div>
+
+    <div class="section">
+        <p>
+            Por si no estoy:<br>
+            Eres una chica especial y llena de virtudes<br>
+            alegras el dia de muchas personas sin darte cuenta<br>
+            te amo con todo mi corazon, preciosa ❤️
+        </p>
+    </div>
+
+    <div class="section">
+        <p>
+            No prometo perfección, pero sí estar.<br>
+            Escucharte, cuidarte y elegirte,<br>
+            incluso en los días simples.
+        </p>
+    </div>
+
+    <div class="section">
+        <h3>Nuestro tiempo juntos ⏳</h3>
+        <div class="counter" id="counter"></div>
+    </div>
+
+    <div class="section">
+    <h3>Desde que nos conocimos ✨</h3>
+    <div class="counter" id="counterMeet"></div>
+</div>
+
+
+    <div class="section">
+        <h3>Pequeñas cosas que amo de ti 🌷</h3>
+        <ul>
+            <li>Tu forma de ser conmigo</li>
+            <li>Cómo me haces sentir en calma</li>
+            <li>Tu risa cuando menos lo esperas</li>
+            <li>Que seas tú</li>
+        </ul>
+    </div>
+
+    <div class="section footer">
+        <p>
+            Contigo, todo es increible.
+        </p>
+    </div>
+
+</div>
+
+<script>
+const startDate = new Date("2025-12-03T00:00:00");
+const meetDate = new Date("2024-01-09T00:00:00");
+
+
+function updateCounter(date, elementId){
+    const now = new Date();
+    let diff = now - date;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    diff %= (1000*60*60*24);
+    const hours = Math.floor(diff / (1000*60*60));
+    diff %= (1000*60*60);
+    const minutes = Math.floor(diff / (1000*60));
+    const seconds = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById(elementId).innerHTML =
+        `${days} días · ${hours}h ${minutes}m ${seconds}s`;
+}
+
+
+setInterval(() => {
+    updateCounter(startDate, "counter");
+    updateCounter(meetDate, "counterMeet");
+}, 1000);
+
+function goBack(){
+    window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>
